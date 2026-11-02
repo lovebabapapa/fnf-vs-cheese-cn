@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import Song.SwagSong;
 import flixel.FlxG;
@@ -110,7 +110,7 @@ class UniiStringTools
 	}
 
     public static function potionionsMessage() {
-		var returnTxt = "You cheated not only the game, but yourself. You didn't grow. You didn't improve. You took a shortcut and gained nothing. You experienced a hollow victory. Nothing was risked and nothing was gained. It's sad that you don't know the difference.";
+		var returnTxt = "你作弊坑到的不只是游戏，还有你自己。你没有成长，没有进步。你走了捷径，却一无所获。你经历的是一场空洞的胜利。没有风险，也没有收获。可悲的是你连这都分不清。";
 
 		return returnTxt;
 	}
@@ -160,16 +160,67 @@ class UniiStringTools
         var swagShit:String = '';
 
         switch (song_name) {
-            case 'Casual-Duel' | 'Disc-Scratch' | 'Dynamic-Duo' | 'Below-Zero' | 'Restaurante-Senpai-Mix' | 'Milkshake-Pico-Mix' | 'Cultured-Parents-Mix' | 'Restaurante-D-Side' | 'Milkshake-Arrow-Funk' | 'CREAM-CHEESE' | 'DIRTY-CHEATER' | 'Manager-Strike-Back': //i'm stupidd lol
-                swagShit = StringTools.replace(song_name, '-', ' ');
-            case 'Fat-Blunt':
-                swagShit = StringTools.replace(song_name, '-', ' ');
+            // 汉化注意：这里绝对不能把多首歌合并成一条「兜底 case」放在前面。
+            // Haxe 的 switch 从上往下匹配，先命中的那条会把后面同名的 case 全变成死代码
+            // （之前 12 首歌的中文名就是这么整批丢掉的，显示成 "Casual Duel" 这种）。
+            case 'Restaurante':
+                swagShit = 'Restaurante(餐厅)';
+            case 'Milkshake':
+                swagShit = 'Milkshake(奶昔)';
+            case 'Cultured':
+                swagShit = 'Cultured(有文化)';
+            case 'Frosted':
+                swagShit = 'Frosted(霜冻)';
+            case 'Alter-Ego':
+                swagShit = 'Alter-Ego(另一面)';
+            case 'Articulation':
+                swagShit = 'Articulation(吐字)';
+            case 'Below-Zero':
+                swagShit = 'Below-Zero(零下)';
             case 'Above-Zero':
-                swagShit = 'Above Zero [up]';
+                swagShit = 'Above-Zero(零上)';
+            case 'Casual-Duel':
+                swagShit = 'Casual-Duel(休闲对决)';
+            case 'CREAM-CHEESE' | 'CREAM CHEESE': // 谱面 json 里实际写的是带空格的 "CREAM CHEESE"
+                swagShit = 'CREAM CHEESE(奶油芝士)';
+            case 'Cultured-Classic':
+                swagShit = 'Cultured-Classic(有文化·经典)';
+            case 'Cultured-Parents-Mix':
+                swagShit = 'Cultured-Parents-Mix(有文化·家长版)';
+            case 'DIRTY-CHEATER':
+                swagShit = 'DIRTY-CHEATER(肮脏作弊者)';
+            case 'Disc-Scratch':
+                swagShit = 'Disc-Scratch(搓碟)';
+            case 'Dynamic-Duo':
+                swagShit = 'Dynamic-Duo(活力二人组)';
+            case 'Manager-Strike-Back':
+                swagShit = 'Manager-Strike-Back(店长反击战)';
+            case 'Milkshake-Arrow-Funk':
+                swagShit = 'Milkshake-Arrow-Funk(奶昔·按键狂热)';
+            case 'Milkshake-Classic':
+                swagShit = 'Milkshake-Classic(奶昔·经典)';
+            case 'Milkshake-Pico-Mix':
+                swagShit = 'Milkshake-Pico-Mix(奶昔·Pico版)';
+            case 'Mozzarella':
+                swagShit = 'Mozzarella(马苏里拉)';
+            case 'Relinquish':
+                swagShit = 'Relinquish(放手)';
+            case 'Restaurante-Classic':
+                swagShit = 'Restaurante-Classic(餐厅·经典)';
+            case 'Restaurante-D-Side':
+                swagShit = 'Restaurante-D-Side(餐厅·D侧)';
+            case 'Restaurante-Senpai-Mix':
+                swagShit = 'Restaurante-Senpai-Mix(餐厅·Senpai版)';
+            case 'Tutorial':
+                swagShit = 'Tutorial(教学)';
+            case 'Wi-Fi':
+                swagShit = 'Wi-Fi(无线网)';
+            case 'Fat-Blunt':
+                swagShit = 'Fat-Blunt(胖烟卷)';
+            case 'Cultured-B':
+                swagShit = 'Cultured-B(有文化·B3)';
             case 'dot-lua':
                 swagShit = '.lua';
-            case 'Cultured-B':
-                swagShit = 'Cultured B3';
             default:
                 swagShit = song_name;
         }

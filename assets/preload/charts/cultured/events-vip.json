@@ -1459,7 +1459,15 @@
 				"lengthInSteps": 16,
 				"altAnim": false,
 				"typeOfSection": 0,
-				"sectionNotes": [],
+				"sectionNotes": [
+					[
+						152000.0,
+						-1,
+						"Subtitles",
+						"你现在有文化了吗？",
+						""
+					]
+				],
 				"bpm": 0,
 				"changeBPM": false,
 				"mustHitSection": false
@@ -1475,6 +1483,13 @@
 						"Play Animation",
 						"culturedYet",
 						"0"
+					],
+					[
+						154000.0,
+						-1,
+						"Subtitles",
+						"null",
+						""
 					]
 				],
 				"bpm": 0,

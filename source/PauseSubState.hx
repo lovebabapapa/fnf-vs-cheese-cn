@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import PlayState.PlayState;
 import Controls.Control;
@@ -56,8 +56,8 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		super();
 
-		menuItemsOG = ['Resume', 'Restart Song', 'Options',#if PLAYTEST_BUILD 'Toggle Cheats', #end 'Exit to menu'];
-		menuItemsPRESSED = ['Resume ', 'Restart Song', 'Options',#if PLAYTEST_BUILD 'Toggle Cheats', #end 'Exit to menu']; //extra space on 'Resume' for bug fix
+		menuItemsOG = ['继续游戏', '重新开始', '选项',#if PLAYTEST_BUILD 'Toggle Cheats', #end '退出到主菜单'];
+		menuItemsPRESSED = ['继续游戏 ', '重新开始', '选项',#if PLAYTEST_BUILD 'Toggle Cheats', #end '退出到主菜单']; //extra space on '继续游戏' for bug fix
 
 		menuItems = menuItemsOG;
 		canDoStuff = true;
@@ -203,7 +203,7 @@ class PauseSubState extends MusicBeatSubstate
 		}
 
 		levelDifficulty = new FlxText(20, 15 + 32, 0, "", 32);
-		levelDifficulty.text += CoolUtil.difficultyString();
+		levelDifficulty.text += CoolUtil.difficultyStringCN();
 		levelDifficulty.scrollFactor.set();
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
 		levelDifficulty.updateHitbox();
@@ -217,13 +217,13 @@ class PauseSubState extends MusicBeatSubstate
 		add(levelInfo);
 
 		blueballedTxt = new FlxText(20, 15 + 64, 0, "", 32);
-		blueballedTxt.text = "Deaths: " + PlayState.deathCounter;
+		blueballedTxt.text = "死亡：" + PlayState.deathCounter;
 		blueballedTxt.scrollFactor.set();
 		blueballedTxt.setFormat(Paths.font('vcr.ttf'), 32);
 		blueballedTxt.updateHitbox();
 		add(blueballedTxt);
 
-		practiceText = new FlxText(20, 15 + 101, 0, "YOU WILL NOW NEVER DIE", 32);
+		practiceText = new FlxText(20, 15 + 101, 0, "你已进入不死模式", 32);
 		practiceText.scrollFactor.set();
 		practiceText.setFormat(Paths.font('vcr.ttf'), 32);
 		practiceText.x = FlxG.width - (practiceText.width + 20);
@@ -231,7 +231,7 @@ class PauseSubState extends MusicBeatSubstate
 		practiceText.visible = PlayState.practiceMode;
 		add(practiceText);
 
-		warningText = new FlxText(20, FlxG.height - 40, 0, "WARNING: Changing options will restart the song for changes to take place.", 32);
+		warningText = new FlxText(20, FlxG.height - 40, 0, "警告：更改选项后需重新开始歌曲才能生效。", 32);
 		warningText.scrollFactor.set();
 		warningText.setFormat(Paths.font('vcr.ttf'), 24);
 		warningText.x = FlxG.width - (warningText.width + 20);
@@ -272,7 +272,7 @@ class PauseSubState extends MusicBeatSubstate
 
 			switch (daSelected)
 			{
-				case "Resume":
+				case "继续游戏":
 					canDoStuff = false;
 					menuItems = menuItemsPRESSED;
 					coolSound();
@@ -285,7 +285,7 @@ class PauseSubState extends MusicBeatSubstate
 
 					trace('shit goes flashy bro');
 
-				case "Restart Song":
+				case "重新开始":
 					canDoStuff = false;
 					coolSound();
 					flickerSelected();
@@ -296,7 +296,7 @@ class PauseSubState extends MusicBeatSubstate
 						FlxG.sound.music.volume = 0;
 					});
 
-				case 'Options':
+				case '选项':
 					canDoStuff = false;
 					coolSound();
 					flickerSelected();
@@ -307,13 +307,7 @@ class PauseSubState extends MusicBeatSubstate
 						FlxG.sound.playMusic(Paths.music(pauseSong));
 					});
 
-				case 'Toggle Cheats':
-					canDoStuff = true;
-					FlxG.sound.play(Paths.sound('scrollMenu'), 0.6);
-					PlayState.practiceMode = !PlayState.practiceMode;
-					practiceText.visible = PlayState.practiceMode;
-
-				case "Exit to menu":
+				case "退出到主菜单":
 					canDoStuff = false;
 					coolSound();
 					flickerSelected();

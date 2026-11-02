@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -221,6 +221,7 @@ class DialogueBox extends FlxSpriteGroup
 		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
 		dropText.font = 'Pixel Arial 11 Bold';
 		dropText.color = 0xFF5851B1;
+		dropText.visible = false; // 中文阴影会糊字，去掉
 		add(dropText);
 
 		swagDialogue = new FlxTypeText(239, 499, Std.int(FlxG.width * 0.6), "", 32);

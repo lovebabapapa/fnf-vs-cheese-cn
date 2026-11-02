@@ -1,4 +1,4 @@
-import flixel.FlxG;
+﻿import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.util.FlxColor;
@@ -27,21 +27,21 @@ class PussyState extends MusicBeatState
 		bg.scrollFactor.set();
 		add(bg);
 
-		var text:Alphabet = new Alphabet(0, 165, "Having trouble beating this song?", true, false, 0.05, 0.55);
+		var text:Alphabet = new Alphabet(0, 165, "这首歌过不去吗？", true, false, 0.05, 0.55);
 		text.screenCenter(X);
 		text.alpha = 1;
 		add(text);
 
-		var text2:Alphabet = new Alphabet(0, text.y + 90, "Turn on pussy mode", true, false, 0.05, 0.45);
+		var text2:Alphabet = new Alphabet(0, text.y + 90, "开启怂逼模式", true, false, 0.05, 0.45);
 		text2.screenCenter(X);
 		text2.alpha = 1;
 		add(text2);
 
-		yesText = new Alphabet(0, text2.y + 150, 'Yes', true);
+		yesText = new Alphabet(0, text2.y + 150, '确定', true);
 		yesText.screenCenter(X);
 		yesText.x -= 200;
 		add(yesText);
-		noText = new Alphabet(0, text2.y + 150, 'No', true);
+		noText = new Alphabet(0, text2.y + 150, '取消', true);
 		noText.screenCenter(X);
 		noText.x += 200;
 		add(noText);

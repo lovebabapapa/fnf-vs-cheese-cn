@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.util.FlxTimer;
 #if desktop
@@ -167,6 +167,18 @@ class CreditsState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		//
+		// 汉化修复：原版把 create() 内容全部注释掉（"DIE CREDITS. crash the game."），
+		// 空资源状态下 arrowSpr/descText/grpOptions 为 null，update 引用即闪退；
+		// 加空引用保护：空页面时仅响应返回键回主菜单
+		if (arrowSpr == null || grpOptions == null || descText == null)
+		{
+			if (controls.BACK)
+			{
+				FlxG.sound.play(Paths.sound('cancelMenu'));
+				MusicBeatState.switchState(new MainMenuState());
+			}
+			return;
+		}
 
 		if (FlxG.sound.music.volume < 0.7)
 		{

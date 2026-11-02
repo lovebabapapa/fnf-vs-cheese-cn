@@ -1,4 +1,4 @@
-import flixel.FlxG;
+﻿import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.util.FlxColor;
@@ -35,7 +35,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 				name = leName;
 			}
 		}
-		name += ' (' + CoolUtil.difficultyStuff[difficulty][0] + ')?';
+		name += ' (' + CoolUtil.difficultyStringCN() + ')?';
 
 		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0;
@@ -43,7 +43,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 		add(bg);
 
 		var tooLong:Float = (name.length > 18) ? 0.8 : 1; //Fucking Winter Horrorland
-		var text:Alphabet = new Alphabet(0, 180, "Reset the score of", true);
+		var text:Alphabet = new Alphabet(0, 180, "重置分数：", true);
 		text.screenCenter(X);
 		alphabetArray.push(text);
 		text.alpha = 0;
@@ -63,11 +63,11 @@ class ResetScoreSubState extends MusicBeatSubstate
 			add(icon);
 		}
 
-		yesText = new Alphabet(0, text.y + 150, 'Yes', true);
+		yesText = new Alphabet(0, text.y + 150, '确定', true);
 		yesText.screenCenter(X);
 		yesText.x -= 200;
 		add(yesText);
-		noText = new Alphabet(0, text.y + 150, 'No', true);
+		noText = new Alphabet(0, text.y + 150, '取消', true);
 		noText.screenCenter(X);
 		noText.x += 200;
 		add(noText);

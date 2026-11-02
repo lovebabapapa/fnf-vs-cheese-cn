@@ -8,18 +8,6 @@ import flixel.util.FlxTimer;
 import openfl.events.Event;
 import vlc.VlcBitmap;
 
-// THIS IS FOR TESTING
-// DONT STEAL MY CODE >:(
-
-//fuck you -unii
-// shoutout to the guy who didn't want me too steal his code -diples
-
-// penis -potion ion
-
-//the bg artists a weird one huh -unii
-
-//"something something code theft" - Avi
-
 class VideoMP4
 {
 	#if WINDOWS_BUILD
@@ -32,8 +20,14 @@ class VideoMP4
 	public var isPaused:Bool = false;
 	public var isVideo:Bool = false;
 
+	// vlc 回调线程 → 主线程 转发标志（switchState/GDI/FlxTimer 一律回主线程）
+	var readyFlag:Bool = false;
+	var deferredEnd:Bool = false;
+	var deferredError:Bool = false;
+	var cleanedUp:Bool = false;
+
 	public function new() {
-		
+
 	}
 
 	public function playMP4(path:String, ?opacity:Float = 1, ?repeat:Bool = false, ?outputTo:FlxSprite = null, ?isWindow:Bool = false, ?isFullscreen:Bool = false, ?midSong:Bool = false):Void
@@ -59,8 +53,6 @@ class VideoMP4
 			bitmap.set_height(FlxG.stage.stageWidth / (16 / 9));
 		}
 
-
-
 		bitmap.onVideoReady = onVLCVideoReady;
 		bitmap.onComplete = onVLCComplete;
 		bitmap.onError = onVLCError;
@@ -68,7 +60,7 @@ class VideoMP4
 		FlxG.stage.addEventListener(Event.ENTER_FRAME, update);
 
 		if (repeat)
-			bitmap.repeat = -1; 
+			bitmap.repeat = -1;
 		else
 			bitmap.repeat = 0;
 
@@ -80,9 +72,7 @@ class VideoMP4
 
 		if (outputTo != null)
 		{
-			// lol this is bad kek
 			bitmap.alpha = 0;
-
 			sprite = outputTo;
 		}
 
@@ -102,27 +92,60 @@ class VideoMP4
 		return pDir + fileName;
 	}
 
-	function onVLCVideoReady()
+	// vlc 回调线程：只置标志，一切主线程 API（switchState/GDI/FlxTimer）回主线程执行
+	function onVLCVideoReady():Void
 	{
-		trace("Video sprite loaded.");
-
-		if (sprite != null)
-			sprite.loadGraphic(bitmap.bitmapData);
-
-		isVideo = true;
+		readyFlag = true;
 	}
 
-	public function onVLCComplete()
+	public function onVLCComplete():Void
 	{
-		bitmap.stop();
-		isVideo = false;
+		deferredEnd = true;
+	}
 
-		// Clean player, just in case! Actually no.
+	function onVLCError():Void
+	{
+		deferredError = true;
+	}
 
-		FlxG.camera.fade(FlxColor.BLACK, 0, false);
+	function update(e:Event)
+	{
+		bitmap.volume = 0;
+		if(!FlxG.sound.muted && FlxG.sound.volume > 0.01) {
+			bitmap.volume = FlxG.sound.volume * 0.5 + 0.5;
+		}
 
-		trace("Video Ended, HOPEFULLY NO ERRORS FROM HERE!");
+		if (readyFlag)
+		{
+			readyFlag = false;
+			trace("Video sprite loaded.");
+			if (sprite != null)
+				sprite.loadGraphic(bitmap.bitmapData);
+			isVideo = true;
+		}
 
+		if (deferredError && !cleanedUp)
+		{
+			cleanedUp = true;
+			bitmap.stop();
+			isVideo = false;
+			trace("Video ERROR, falling back.");
+			finishVideo();
+		}
+
+		if (deferredEnd && !cleanedUp)
+		{
+			cleanedUp = true;
+			bitmap.stop();
+			isVideo = false;
+			FlxG.camera.fade(FlxColor.BLACK, 0, false);
+			trace("Video Ended, HOPEFULLY NO ERRORS FROM HERE!");
+			finishVideo();
+		}
+	}
+
+	function finishVideo():Void
+	{
 		new FlxTimer().start(0.3, function(tmr:FlxTimer)
 		{
 			if (finishCallback != null)
@@ -154,26 +177,6 @@ class VideoMP4
 		}
 
 		bitmap.visible = false;
-	}
-
-	function onVLCError()
-	{
-		if (finishCallback != null)
-		{
-			finishCallback();
-		}
-		else if (stateCallback != null)
-		{
-			LoadingState.loadAndSwitchState(stateCallback);
-		}
-	}
-
-	function update(e:Event)
-	{
-		bitmap.volume = 0;
-		if(!FlxG.sound.muted && FlxG.sound.volume > 0.01) {
-			bitmap.volume = FlxG.sound.volume * 0.5 + 0.5;
-		}
 	}
 	#end
 }

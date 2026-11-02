@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 #if desktop
 import Discord.DiscordClient;
@@ -402,7 +402,7 @@ class TitleState extends MusicBeatState
 					addMoreText('Potionion', 20);
 				case 6:
 					addMoreText('Bluecheese', 20);
-					addMoreText('& Many more', 20);
+					addMoreText('以及更多', 20);
 			}
 
 			createStartText(); // else if type beat im not proud of :(
@@ -481,24 +481,24 @@ class TitleState extends MusicBeatState
 			switch (curBeat)
 			{
 				case 7:
-				addMoreText('Are Proud', 20);
-				addMoreText('To Present', 20);
+				addMoreText('自豪地', 20);
+			addMoreText('呈上', 20);
 				case 8:
 					deleteCoolText();
-					createCoolText(["If you're a"], 45);
+					createCoolText(['如果你是一位'], 45);
 				case 9:
-					addMoreText('Friday Night Funkin fan', 45);
+					addMoreText('周五夜放克粉丝', 45);
 				case 10:
 					deleteCoolText();
-					createCoolText(['You definitely want'], 45);
+					createCoolText(['那你绝对想要'], 45);
 				case 11:
-					addMoreText('the full ass', 45);
+					addMoreText('这份完完整整的', 45);
 			}
 		} else {
 			switch (curBeat)
 			{
 				case 7:
-					addMoreText('Present', 20);
+					addMoreText('大礼', 20);
 				case 8:
 					curWacky = FlxG.random.getObject(getIntroTextShit());
 					deleteCoolText();

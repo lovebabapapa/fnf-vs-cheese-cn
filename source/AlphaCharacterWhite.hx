@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -17,6 +17,13 @@ class AlphaCharacterWhite extends FlxSprite
 	public static var numbers:String = "1234567890";
 
 	public static var symbols:String = "|~#$%()*+-:;<=>@[]^_.,'!?&"; //STUPID FUCKING & SYMBOL
+
+	public static function isCJK(ch:String):Bool
+	{
+		if (ch == null || ch.length == 0) return false;
+		var c:Int = ch.charCodeAt(0);
+		return (c >= 0x2E80 && c <= 0x9FFF) || (c >= 0xF900 && c <= 0xFAFF) || (c >= 0xFF00 && c <= 0xFFEF) || (c >= 0x3000 && c <= 0x303F) || (c >= 0x2010 && c <= 0x2027);
+	}
 
 	public var row:Int = 0;
 

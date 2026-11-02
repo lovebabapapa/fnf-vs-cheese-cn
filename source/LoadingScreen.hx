@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -35,7 +35,7 @@ class LoadingScreen extends FlxTypedGroup<FlxSprite>
 		loadTxtProgress = new FlxSprite();
 		add(loadTxtProgress);
 
-		loadTxt = new FlxText(0, 0, 0, "HOL UP WE LOADING RQ...", 50);
+		loadTxt = new FlxText(0, 0, 0, "等一下，马上加载好...", 50);
 		loadTxt.setFormat(Paths.font("fnf.otf"), 24, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		loadTxt.x = 5;
 		loadTxt.y = FlxG.height - loadTxt.height - 5;

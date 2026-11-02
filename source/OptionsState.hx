@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 #if desktop
 import Discord.DiscordClient;
@@ -34,7 +34,7 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['KEYBINDS', 'GAMEPLAY', 'APPEARANCE', 'PERFORMANCE', 'WINDOW', 'ACCESSIBILITY'];
+	var options:Array<String> = ['按键设置', '玩法', '外观', '性能', '窗口', '辅助'];
 	private var grpOptions:FlxTypedGroup<AlphabetWhite>;
 	private static var curSelected:Int = 0;
 	public static var menuBlackShit:FlxSprite;
@@ -139,10 +139,10 @@ class OptionsState extends MusicBeatState
 
 					switch(selected)
 					{
-						case 'KEYBINDS':
+						case '按键设置':
 							openSubState(new KeybindsSubState());
 
-						case 'GAMEPLAY' | 'APPEARANCE' | 'PERFORMANCE' | 'WINDOW' | 'ACCESSIBILITY':
+						case '玩法' | '外观' | '性能' | '窗口' | '辅助':
 							openSubState(new SettingsSubState());
 					}
 					trace('picked category: ' + SettingsSubState.category);

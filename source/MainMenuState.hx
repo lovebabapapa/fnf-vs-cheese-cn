@@ -111,9 +111,9 @@ class MainMenuState extends MusicBeatState
 		var yScroll:Float = Math.max(0.12 - (0.02 * (optionShit.length - 2.5)), 0.1);
 
 		if (MainMenuState.cursed)
-			modificationString = " | YOU CAN'T RUN.";
+			modificationString = " | 你跑不掉的。";
 		else
-			modificationString = " modified by Uniimations";
+			modificationString = " 由 Uniimations 制作";
 
 		if (ClientPrefs.framerate < 120)
 			floatAmount = 0.20;

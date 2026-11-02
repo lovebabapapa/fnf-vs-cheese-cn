@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.FlxG;
 import flixel.util.FlxSave;
@@ -68,20 +68,20 @@ class ClientPrefs {
 	//Every key has two binds, these binds are defined on defaultKeys! If you want your control to be changeable, you have to add it on ControlsSubState (inside OptionsState)'s list
 	public static var keyBinds:Array<Dynamic> = [
 		//Key Bind, Name for ControlsSubState
-		[Control.NOTE_LEFT, 'Left'],
-		[Control.NOTE_DOWN, 'Down'],
-		[Control.NOTE_UP, 'Up'],
-		[Control.NOTE_RIGHT, 'Right'],
+		[Control.NOTE_LEFT, '左'],
+		[Control.NOTE_DOWN, '下'],
+		[Control.NOTE_UP, '上'],
+		[Control.NOTE_RIGHT, '右'],
 
-		[Control.UI_LEFT, 'Left '],		//Added a space for not conflicting on ControlsSubState
-		[Control.UI_DOWN, 'Down '],		//Added a space for not conflicting on ControlsSubState
-		[Control.UI_UP, 'Up '],			//Added a space for not conflicting on ControlsSubState
-		[Control.UI_RIGHT, 'Right '],	//Added a space for not conflicting on ControlsSubState
+		[Control.UI_LEFT, '左 '],		//Added a space for not conflicting on ControlsSubState
+		[Control.UI_DOWN, '下 '],		//Added a space for not conflicting on ControlsSubState
+		[Control.UI_UP, '上 '],			//Added a space for not conflicting on ControlsSubState
+		[Control.UI_RIGHT, '右 '],	//Added a space for not conflicting on ControlsSubState
 
-		[Control.RESET, 'Reset'],
-		[Control.ACCEPT, 'Accept'],
-		[Control.BACK, 'Back'],
-		[Control.PAUSE, 'Pause']
+		[Control.RESET, '重置'],
+		[Control.ACCEPT, '确认'],
+		[Control.BACK, '返回'],
+		[Control.PAUSE, '暂停']
 	];
 	public static var lastControls:Array<FlxKey> = defaultKeys.copy();
 
@@ -134,7 +134,7 @@ class ClientPrefs {
 		save.bind('controls', 'vscheese'); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
 		save.data.customControls = lastControls;
 		save.flush();
-		FlxG.log.add("Settings saved!");
+		FlxG.log.add("设置已保存！");
 	}
 
 	public static function loadPrefs() {

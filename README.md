@@ -1,84 +1,97 @@
-# Friday Night Funkin' - Psych Engine
+# Friday Night Funkin' - VS Cheese（中文汉化版）
+
+> **本仓库是 [VS Cheese: The Full Ass Update](https://gamebanana.com/mods/301107)（uniimations 制作）的 fork，
+> 在其基础上完成了完整的简体中文汉化，并重新编译为 Windows 可执行版本。**
+
+---
+
+## ⚠️ AI 使用声明
+
+**本汉化项目大量使用了 AI（大语言模型）辅助完成**，在此明确声明：
+
+- **翻译工作**：全部对话（149 句）、成就描述、界面文本、标语等中文译文由 AI 生成初稿，经人工校对修改后定稿
+- **工程实现**：Psych Engine 0.3.2 → 现代工具链的移植编译、源码级汉化补丁（CJK 渲染支持、UI 字符串替换等）、字体图集生成管线，均在 AI 辅助下完成
+- **视频字幕**：时间轴由 AI 语音识别（Whisper）初识别，人工校对
+- **修正与验收**：所有修复均经过人工逐项目视验收（游戏内实际测试）
+
+使用本仓库的翻译成果时，请知晓上述情况；译文质量以游戏内实际效果为准。
+
+---
+
+## 汉化内容
+
+| 范围 | 说明 |
+|---|---|
+| 剧情对话 | 149 句全部汉化（含 SHIT 难度特殊对话的"原味"保留） |
+| 过场视频 | 4 部剧情视频硬烧中英双语字幕 |
+| 曲目中途字幕 | Cheese 的演出字幕全部汉化 |
+| 引擎 UI | 主菜单/暂停/设置页（含全部选项描述）/按键设置 |
+| 成就 | 32 个成就的名称与描述 |
+| 标语 | 标题屏 47 条玩梗标语 |
+| 歌名 | 显示为 `English(中文)` 格式，曲作者保留英文 |
+| 图片素材 | 主菜单按钮、评级图、演出图（系统错误/蓝屏彩蛋）等重绘或替换 |
+| 字体 | 对话/HUD 使用 [得意黑 (Smiley Sans)](https://github.com/atelier-anchor/smiley-sans)（SIL OFL）；菜单图集渲染使用[小瀨字體P SC](https://github.com/ButTaiwan/cjktables)（OFL） |
+
+**保持原文**：难度名（Easy/Normal/Hard/VIP）、Credits 页人物引言、部分原作 shitpost 内容。
+
+## 已知限制
+
+- 周卡片大字（TUTORIAL / WEEK 1）与曲目标题图（TRACKLIST）为原版图片，未重绘
+- 人名保留英文原文（Cheese、Suzuki、Dearest 等）
+- 引擎底层文本（版本号等）保持英文
+
+## 编译
+
+本项目使用 **Haxe 4.2.5 + OpenFL 9.1.0 + Lime 7.9.0 + HXCPP 4.2.1** 编译（原 2021 年依赖组合在
+新版库下无法通过类型检查）：
+
+```bash
+haxelib install flixel 4.10.0
+haxelib install flixel-addons 2.11.0
+haxelib install flixel-ui 2.4.0
+haxelib install openfl 9.1.0
+haxelib install lime 7.9.0
+haxelib install hxcpp 4.2.1
+haxelib install linc_luajit 0.0.4
+haxelib install actuate 1.9.0
+haxelib install systools 1.1.0
+haxelib install discord_rpc 1.0.0
+# extension-webm 需要 Kade 系 fork（带 fuck/changePlaying API）：
+haxelib git extension-webm https://github.com/GrowtopiaFli/extension-webm
+
+lime build windows
+```
+
+需要 MSVC（VS2019+ Build Tools，含 Windows SDK）。
+编译细节与踩坑记录见本仓库 commit 历史。
+
+---
+
+## 原版说明（Psych Engine）
+
 Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
 
-## Installation:
-Follow a Friday Night Funkin' source code compilation tutorial, after this you will need to install LuaJIT.
-
-You can do this with: `haxelib install linc_luajit` on a Command prompt/PowerShell
-
-...Or if you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
-
 ## Credits:
+
 * Shadow Mario - Coding
 * RiverOaken - Arts and Animations
 
 ### Special Thanks
 * Keoiki - Note Splash Animations
 
-WARNING: This engine is still very early in development! You can request new features though
-_____________________________________
+---
 
-# Features
+## Original Mod Credits / 原模组制作组
 
-## Attractive animated dialogue boxes:
+* **uniimations** — 美术、动画、音乐、谱面（Cheese 的作者）
+* **potionion** — 背景美术、重绘
+* **BlueCheese** — 剧本、配音、角色设计
+* **OiSuzuki**、**Dansilot** — 配音
+* 详见游戏内 Credits 页面
 
-![](https://user-images.githubusercontent.com/44785097/127706669-71cd5cdb-5c2a-4ecc-871b-98a276ae8070.gif)
+**Original mod**: https://gamebanana.com/mods/301107
+**License**: Apache 2.0（见 LICENSE 文件）
 
+---
 
-## Atleast one change to every week:
-### Week 1:
-  * New Dad Left sing sprite 
-  * Unused stage lights are now used
-### Week 2:
-  * Both BF and Skid & Pump does "Hey!" animations
-  * Thunders does a quick light flash and zooms the camera in slightly
-  * Added a quick transition/cutscene to Monster
-### Week 3:
-  * BF does "Hey!" during Philly Nice
-  * Blammed has a cool new colors flash during that sick part of the song
-### Week 4:
-  * Better hair physics for Mom/Boyfriend (Maybe even slightly better than Week 7's :eyes:)
-  * Henchmen die during all songs. Yeah :(
-### Week 5:
-  * Bottom Boppers and GF does "Hey!" animations during Cocoa and Eggnog
-  * On Winter Horrorland, GF bops her head slower in some parts of the song.
-### Week 6:
-  * On Thorns, the HUD is hidden during the cutscene
-  * Also there's the Background girls being spooky during the "Hey!" parts of the Instrumental
-
-## Cool new Chart Editor changes and countless bug fixes
-![an](https://user-images.githubusercontent.com/44785097/130653801-3bdaf3e0-3499-4bc5-ba95-95225567c445.jpg)
-* You can now chart "Event" notes, which are bookmarks that trigger specific actions that usually were hardcoded on the vanilla version of the game.
-* Your song's BPM can now have decimal values
-* You can manually adjust a Note's strum time if you're really going for milisecond precision
-* You can change a note's type on the Editor, it comes with two example types:
-  * Alt Animation: Forces an alt animation to play, useful for songs like Ugh/Stress
-  * Hey: Forces a "Hey" animation instead of the base Sing animation, if Boyfriend hits this note, Girlfriend will do a "Hey!" too.
-  * Hurt Note: Hitting this note will make you take damage equivalent to 15% of your health (5% if it's a sustain note piece).
-
-## Character Editor menu (Press 8 during a song)
-![611204265433b](https://user-images.githubusercontent.com/44785097/130653956-3b15d82e-328c-4a59-8cf7-1d2b17c05f9a.jpg)
-
-
-## Story mode menu rework:
-![](https://i.imgur.com/UB2EKpV.png)
-* Added a different BG to every song (less Tutorial)
-* All menu characters are now in individual spritesheets, makes modding it easier.
-
-## Credits menu
-![](https://i.imgur.com/NdIQt3d.png)
-* You can add a head icon, name, description and a Redirect link for when the player presses Enter while the item is currently selected.
-
-## Awards/Achievements
-* The engine comes with 16 example achievements that you can mess with and learn how it works (Check Achievements.hx and search for "checkForAchievement" on PlayState.hx)
-
-## Options menu:
-* You can change Note colors, Controls and Preferences there.
- * On Preferences you can toggle Downscroll, Anti-Aliasing, Framerate, Low Quality, Note Splashes, Hide Hud elements, Flashing Lights, etc.
-
-## Other gameplay features:
-* When the enemy hits a note, it plays the note hit animation on their strum, just like when the player hits a note.
-* Lag doesn't impact the camera movement and player icon scaling anymore.
-* Some stuff based on Week 7's changes has been put in (Background colors on Freeplay, Note splashes)
-* You can reset your Score on Freeplay/Story Mode by pressing Reset button.
-* You can listen to a song on Freeplay by pressing Space once.
+*本汉化版本与原作团队无官方关联；游玩原版请支持上述原作者。*

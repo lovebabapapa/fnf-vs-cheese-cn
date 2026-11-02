@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -132,7 +132,7 @@ class Alphabet extends FlxSpriteGroup
 
 			var isNumber:Bool = AlphaCharacter.numbers.indexOf(character) != -1;
 			var isSymbol:Bool = AlphaCharacter.symbols.indexOf(character) != -1;
-			var isAlphabet:Bool = AlphaCharacter.alphabet.indexOf(character.toLowerCase()) != -1;
+			var isAlphabet:Bool = AlphaCharacter.alphabet.indexOf(character.toLowerCase()) != -1 || AlphaCharacter.isCJK(character);
 			if ((isAlphabet || isSymbol || isNumber) && (!isBold || !spaceChar))
 			{
 				if (lastSprite != null)

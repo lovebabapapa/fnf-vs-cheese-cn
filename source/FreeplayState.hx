@@ -111,7 +111,7 @@ class FreeplayState extends MusicBeatState
 		switch(options[curSelected])
 		{
 			case 'STORY SONGS':
-				categoryText.text = "< STORY SONGS >";
+				categoryText.text = "< 故事歌曲 >";
 				storySpr.alpha = 1;
 				bonusSpr.alpha = 0.5;
 				unfairSpr.alpha = 0.5;
@@ -120,7 +120,7 @@ class FreeplayState extends MusicBeatState
 				FlxTween.tween(unfairSpr, {'scale.x': 0.9, 'scale.y': 0.9}, 0.2, {ease: FlxEase.cubeInOut});
 
 			case 'BONUS SONGS':
-				categoryText.text = "< BONUS SONGS >";
+				categoryText.text = "< 附赠歌曲 >";
 				storySpr.alpha = 0.5;
 				bonusSpr.alpha = 1;
 				unfairSpr.alpha = 0.5;
@@ -129,7 +129,7 @@ class FreeplayState extends MusicBeatState
 				FlxTween.tween(unfairSpr, {'scale.x': 0.9, 'scale.y': 0.9}, 0.2, {ease: FlxEase.cubeInOut});
 
 			case 'UNFAIR SONGS':
-				categoryText.text = "< UNFAIR SONGS >";
+				categoryText.text = "< 不公平歌曲 >";
 				storySpr.alpha = 0.5;
 				bonusSpr.alpha = 0.5;
 				unfairSpr.alpha = 1;
@@ -159,7 +159,7 @@ class FreeplayState extends MusicBeatState
 				switch(options[curSelected])
 				{
 					case 'STORY SONGS':
-						categoryText.text = "< UNFAIR SONGS >";
+						categoryText.text = "< 不公平歌曲 >";
 						storySpr.alpha = 0.5;
 						bonusSpr.alpha = 0.5;
 						unfairSpr.alpha = 1;
@@ -168,7 +168,7 @@ class FreeplayState extends MusicBeatState
 						FlxTween.tween(bonusSpr, {'scale.x': 0.9, 'scale.y': 0.9}, 0.2, {ease: FlxEase.cubeInOut});
 
 					case 'BONUS SONGS':
-						categoryText.text = "< STORY SONGS >";
+						categoryText.text = "< 故事歌曲 >";
 						storySpr.alpha = 1;
 						bonusSpr.alpha = 0.5;
 						unfairSpr.alpha = 0.5;
@@ -177,7 +177,7 @@ class FreeplayState extends MusicBeatState
 						FlxTween.tween(unfairSpr, {'scale.x': 0.9, 'scale.y': 0.9}, 0.2, {ease: FlxEase.cubeInOut});
 
 					case 'UNFAIR SONGS':
-						categoryText.text = "< BONUS SONGS >";
+						categoryText.text = "< 附赠歌曲 >";
 						storySpr.alpha = 0.5;
 						bonusSpr.alpha = 1;
 						unfairSpr.alpha = 0.5;
@@ -193,7 +193,7 @@ class FreeplayState extends MusicBeatState
 				switch(options[curSelected])
 				{
 					case 'STORY SONGS':
-						categoryText.text = "< BONUS SONGS >";
+						categoryText.text = "< 附赠歌曲 >";
 						storySpr.alpha = 0.5;
 						bonusSpr.alpha = 1;
 						unfairSpr.alpha = 0.5;
@@ -202,7 +202,7 @@ class FreeplayState extends MusicBeatState
 						FlxTween.tween(unfairSpr, {'scale.x': 0.9, 'scale.y': 0.9}, 0.2, {ease: FlxEase.cubeInOut});
 
 					case 'BONUS SONGS':
-						categoryText.text = "< UNFAIR SONGS >";
+						categoryText.text = "< 不公平歌曲 >";
 						storySpr.alpha = 0.5;
 						bonusSpr.alpha = 0.5;
 						unfairSpr.alpha = 1;
@@ -211,7 +211,7 @@ class FreeplayState extends MusicBeatState
 						FlxTween.tween(bonusSpr, {'scale.x': 0.9, 'scale.y': 0.9}, 0.2, {ease: FlxEase.cubeInOut});
 
 					case 'UNFAIR SONGS':
-						categoryText.text = "< STORY SONGS >";
+						categoryText.text = "< 故事歌曲 >";
 						storySpr.alpha = 1;
 						bonusSpr.alpha = 0.5;
 						unfairSpr.alpha = 0.5;
@@ -239,7 +239,6 @@ class FreeplayState extends MusicBeatState
 						FlxTween.tween(FlxG.camera, { zoom: 1.5}, 1.5, { ease: FlxEase.expoIn });
 
 						FreeplaySelection.category = options[curSelected];
-						trace('FREEPLAY SELECTION CATEGORY: ' + FreeplaySelection.category);
 
 						// made timer for this function SHORTER !
 						grpSelections.forEach(function(spr:FlxSprite)
@@ -266,7 +265,6 @@ class FreeplayState extends MusicBeatState
 					FlxTween.tween(FlxG.camera, { zoom: 1.5}, 1.5, { ease: FlxEase.expoIn });
 
 					FreeplaySelection.category = options[curSelected];
-					trace('FREEPLAY SELECTION CATEGORY: ' + FreeplaySelection.category);
 
 					// made timer for this function SHORTER !
 					grpSelections.forEach(function(spr:FlxSprite)

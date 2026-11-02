@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.graphics.FlxGraphic;
 #if desktop
@@ -428,15 +428,15 @@ class PlayState extends MusicBeatState
 			else if(WeekData.weekNumber[storyWeek] != null)
 				weekCustomName = 'Week ' + WeekData.weekNumber[storyWeek];
 
-			detailsText = "Story Mode: " + displaySongName + " (" + storyDifficultyText + ")";
+			detailsText = "故事模式：" + displaySongName + " (" + storyDifficultyText + ")";
 		}
 		else
 		{
-			detailsText = "Freeplay - " + displaySongName + " (" + storyDifficultyText + ")";
+			detailsText = "自由模式 - " + displaySongName + " (" + storyDifficultyText + ")";
 		}
 
 		// String for when the game is paused
-		detailsPausedText = "Paused - " + "Freeplay";
+		detailsPausedText = "已暂停 - " + "Freeplay";
 		#end
 
 		grpCustomTableBoppers = new FlxTypedGroup<BGSprite>();
@@ -1028,7 +1028,7 @@ class PlayState extends MusicBeatState
 
 			add(blackBarTop);
 			add(blackBarBottom);
-			add(subTxt);
+			// 汉化：subTxt 不在这里 add —— 放到 create() 末尾，保证它画在所有 HUD 和音符之上
 		}
 
 		var bfType:String = '';
@@ -1355,7 +1355,7 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) healthBarOV.y = 0.12 * FlxG.height;
 
 		if (songLowercase == 'manager-strike-back') {
-			hudFont = 'UNDERTALE.otf';
+			hudFont = 'ark-pixel.ttf';
 			ratingBarSize = 14;
 			healthBarOV.y -= 95;
 			if(ClientPrefs.downScroll) healthBarOV.y += 105;
@@ -1460,7 +1460,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		scoreTxt.antialiasing = ClientPrefs.globalAntialiasing;
 
-		scoreTxt.text = "Score: 0";
+		scoreTxt.text = "分数：0";
 
 		accText = new FlxText(scoreTxt.x, scoreTxt.y + 20, 0, "", 20);
 		accText.setFormat(Paths.font(hudFont), 14, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1531,12 +1531,12 @@ class PlayState extends MusicBeatState
 		missesTxt.cameras = [camHUD];
 
 		//ALL DEFAULT HIT TIMING TEXT
-		shitsTxt.text = 'Shit: ' + shits;
-		badsTxt.text = 'Bad: ' + bads;
-		goodsTxt.text = 'Good: ' + goods;
-		sicksTxt.text = 'Sick: ' + sicks;
-		perfectsTxt.text = 'Perfect: ' + perfects;
-		missesTxt.text = 'Miss: ' + songMisses;
+		shitsTxt.text = '糟糕：' + shits;
+		badsTxt.text = '较差：' + bads;
+		goodsTxt.text = '良好：' + goods;
+		sicksTxt.text = '优秀：' + sicks;
+		perfectsTxt.text = '完美：' + perfects;
+		missesTxt.text = '漏击：' + songMisses;
 
 		if (curStage == 'frostedStage') {
 			frostedMisses = new FlxText(400, 20, FlxG.width - 800, "" + deathCounter, 32);
@@ -1554,9 +1554,9 @@ class PlayState extends MusicBeatState
 			}
 
 			if (ClientPrefs.pussyMode)
-				frostedMisses.text = "MISSES: " + songMisses + "\nDEATHS: " + deathCounter + "\nYOU'RE A PUSSY!";
+				frostedMisses.text = "漏击：" + songMisses + "\n死亡：" + deathCounter + "\n你就是个怂逼！";
 			else
-				frostedMisses.text = "MISSES: " + songMisses + "/10\nDEATHS: " + deathCounter;
+				frostedMisses.text = "漏击：" + songMisses + "/10\n死亡：" + deathCounter;
 
 			add(frostedMisses);
 		}
@@ -1774,6 +1774,10 @@ class PlayState extends MusicBeatState
 		#end
 
 		callOnLuas('onCreatePost', []);
+
+		// 汉化：字幕放到最后 add，确保它盖在所有 HUD 元素和音符之上，不会被挡住
+		// （subTxt 只在 !ClientPrefs.fuckyouavi 时创建，所以要判空）
+		if (subTxt != null) add(subTxt);
 
 		super.create();
 
@@ -2359,6 +2363,9 @@ class PlayState extends MusicBeatState
 		// Song duration in a float, useful for the time left feature
 		songLength = FlxG.sound.music.length;
 
+		// 音乐此时已就绪，补上 casualTime 的第三项（字段初始化器里拿不到）
+		casualTime[2] = songLength;
+
 		// SET SHORT TIME
 		if (SONG.song.toLowerCase() == 'casual-duel')
 			trueLength = casualTime[0];
@@ -2380,9 +2387,11 @@ class PlayState extends MusicBeatState
 		{
 			skipActive = true;
 			skipText = new FlxText(400, 400, FlxG.width - 800);
-			skipText.text = "Press Space to Skip Intro";
+			skipText.text = "按 SPACE 跳过开场";
 			skipText.size = 30;
 			skipText.color = FlxColor.WHITE;
+			// 汉化：默认字体缺中文字形，按 SPACE 提示的中文会变豆腐块，换 ark-pixel
+			skipText.setFormat(Paths.font('ark-pixel.ttf'), 30, FlxColor.WHITE, CENTER);
 			skipText.cameras = [camHUD];
 			skipText.alpha = 0;
 			FlxTween.tween(skipText, {alpha: 1}, 0.2);
@@ -2610,7 +2619,11 @@ class PlayState extends MusicBeatState
 				blackBarBottom.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 
 			case 'Subtitles':
-				subTxt.setFormat(Paths.font("fnf.otf"), 40, FlxColor.WHITE, CENTER);
+				// 汉化：原版没有描边，白字遇到浅色背景会糊成一片，这里补一圈黑色描边；
+				// 字号从 40 提到 48，中文字形比英文复杂，40 在 720p 下偏小
+				subTxt.setFormat(Paths.font("fnf.otf"), 48, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+				subTxt.borderSize = 3;
+				subTxt.borderQuality = 1;
 				subTxt.scrollFactor.set();
 				subTxt.antialiasing = ClientPrefs.globalAntialiasing;
 		}
@@ -2699,7 +2712,9 @@ class PlayState extends MusicBeatState
 						targetAlpha = 0;
 
 					if (songLowercase == 'mozzarella') {
-						babyArrow.y += 200;
+						// 下滚时 strumLine 在屏幕底部（y=570），原版 +200 会把整条敌方轨道推到画面外（y>720），
+						// 所以下滚时改成反向偏移。-100 是实机对比后定的间距（再往上顶到角色脸，再往下会压玩家轨道）
+						babyArrow.y += ClientPrefs.downScroll ? -100 : 200;
 					}
 					opponentStrums.add(babyArrow);
 				case 1:
@@ -2885,7 +2900,9 @@ class PlayState extends MusicBeatState
 	private var paused:Bool = false;
 	var startedCountdown:Bool = false;
 
-	var casualTime:Array<Float> = [73350, 93350, FlxG.sound.music.length];
+	// 注意：字段初始化器在构造函数体之前执行，此处 FlxG.sound.music 可能为 null（切换 state 时被销毁），
+	// 因此不能在这里读 music.length；第三项在 startSong() 里音乐就绪后再赋值。
+	var casualTime:Array<Float> = [73350, 93350, 0];
 	var trueLength:Float = 0;
 
 	override public function update(elapsed:Float)
@@ -4445,6 +4462,13 @@ class PlayState extends MusicBeatState
 						subTxt.text = "";
 					else
 						subTxt.text = value1;
+
+					// 汉化：教程/有文化VIP/Dynamic Duo 的字幕与血条重叠，仅在字幕显示期间隐藏血条，null 清除时恢复
+					var subHideHud:Bool = value1 != 'null' && (songLowercase == 'tutorial' || SONG.player2 == 'vip-bluecheese' || songLowercase == 'dynamic-duo');
+					healthBarOV.visible = !ClientPrefs.hideHud && songLowercase != 'manager-strike-back' && !subHideHud;
+					healthBar.visible = !ClientPrefs.hideHud && !subHideHud;
+					iconP1.visible = !ClientPrefs.hideHud && songLowercase != 'manager-strike-back' && !subHideHud;
+					iconP2.visible = !ClientPrefs.hideHud && songLowercase != 'manager-strike-back' && !subHideHud;
 
 				case 'Casual Time':
 					FlxTween.num(trueLength, casualTime[Std.parseInt(value1)], 2, {ease: FlxEase.circOut}, function (x:Float) {
@@ -6640,7 +6664,7 @@ class PlayState extends MusicBeatState
 
 		rankString = UniiStringTools.makePlayRanks(songMisses, shits, bads, goods, sicks, perfects);
 
-		scoreTxt.text = "Score: " + songScore;
+		scoreTxt.text = "分数：" + songScore;
 
 		if (!Math.isNaN(ratingPercent))
 		{
@@ -6648,18 +6672,18 @@ class PlayState extends MusicBeatState
 		}
 
 		//ALL HIT TIMING UPDATED TEXT
-		shitsTxt.text = 'Shit:  ' + shits;
-		badsTxt.text = 'Bad:  ' + bads;
-		goodsTxt.text = 'Good:  ' + goods;
-		sicksTxt.text = 'Sick:  ' + sicks;
-		perfectsTxt.text = 'Perfect:  ' + perfects;
-		missesTxt.text = 'Miss:  ' + songMisses;
+		shitsTxt.text = '糟糕： ' + shits;
+		badsTxt.text = '较差： ' + bads;
+		goodsTxt.text = '良好： ' + goods;
+		sicksTxt.text = '优秀： ' + sicks;
+		perfectsTxt.text = '完美： ' + perfects;
+		missesTxt.text = '漏击： ' + songMisses;
 
 		if (curStage == 'frostedStage') {
 			if (ClientPrefs.pussyMode)
-				frostedMisses.text = "MISSES: " + songMisses + "\nDEATHS: " + deathCounter + "\nYOU'RE A PUSSY!";
+				frostedMisses.text = "漏击：" + songMisses + "\n死亡：" + deathCounter + "\n你就是个怂逼！";
 			else
-				frostedMisses.text = "MISSES: " + songMisses + "/10\nDEATHS: " + deathCounter;
+				frostedMisses.text = "漏击：" + songMisses + "/10\n死亡：" + deathCounter;
 		}
 
 		setOnLuas('rating', ratingPercent);

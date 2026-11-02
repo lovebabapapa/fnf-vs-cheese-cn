@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -132,7 +132,7 @@ class AlphabetVCR extends FlxSpriteGroup
 
 			var isNumber:Bool = AlphaCharacterVCR.numbers.indexOf(character) != -1;
 			var isSymbol:Bool = AlphaCharacterVCR.symbols.indexOf(character) != -1;
-			var isAlphabet:Bool = AlphaCharacterVCR.alphabet.indexOf(character.toLowerCase()) != -1;
+			var isAlphabet:Bool = AlphaCharacterVCR.alphabet.indexOf(character.toLowerCase()) != -1 || AlphaCharacterVCR.isCJK(character);
 			if ((isAlphabet || isSymbol || isNumber) && (!isBold || !spaceChar))
 			{
 				if (lastSprite != null)

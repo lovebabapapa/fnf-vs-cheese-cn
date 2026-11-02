@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 #if desktop
 import Discord.DiscordClient;
@@ -44,16 +44,16 @@ class KeybindsSubState extends MusicBeatSubstate
 	private static var curSelected:Int = 1;
 	private static var curAlt:Bool = false;
 
-	private static var defaultKey:String = 'RESET ALL KEYBINDS';
+	private static var defaultKey:String = '重置全部按键';
 
 	var optionShit:Array<String> = [
-		'NOTE KEYBINDS',
+		'音符按键',
 		ClientPrefs.keyBinds[0][1],
 		ClientPrefs.keyBinds[1][1],
 		ClientPrefs.keyBinds[2][1],
 		ClientPrefs.keyBinds[3][1],
 		'',
-		'HUD KEYBINDS',
+		'界面按键',
 		ClientPrefs.keyBinds[4][1],
 		ClientPrefs.keyBinds[5][1],
 		ClientPrefs.keyBinds[6][1],

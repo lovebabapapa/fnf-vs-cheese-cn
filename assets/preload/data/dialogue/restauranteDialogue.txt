@@ -1,19 +1,19 @@
-:blank:Press S to skip dialogue, press ACCEPT to proceed.
-:gf:This is my favorite restaurant.
-:gf2:I hope you like it!
-:cheese:Hello!
+:blank:按 S 跳过对话，按确认键继续。
+:gf:这是我最喜欢的餐厅。
+:gf2:希望你会喜欢！
+:cheese:你好呀！
 :bf:beep bo
-:gf2:Come on, babe, maybe you can order for me THIS time?
-:bf:*clears throat*
-:bfhey:Hello there, what is this place?
-:cheese:This here is Restaurante de Fromage Bleu. Thank you for asking.
-:bf:Is that French?
+:gf2:来嘛宝贝，这次换你帮我点餐怎么样？
+:bf:*清嗓子*
+:bfhey:你好，请问这是什么地方？
+:cheese:这里是“从芝蓝”餐厅。谢谢垂询。
+:bf:那是法语？
 :cheese2:...
-:cheese3:Maybe...
-:cheese3:I am British though.
-:bf:That sounds fancy...
-:bf:Anyway, are there any deals on the food?
-:cheese3:Well, you could rap battle me for a voucher...
-:bfhey:Oh, sweet! I'm down!
-:gf3:Well put a song on then, we don't have all day
-:cheese2:s-sure thing.
+:cheese3:算是吧...
+:cheese3:不过我可是英国人。
+:bf:听着挺高级的...
+:bf:话说，你们这有什么优惠吗？
+:cheese3:嗯，你可以跟我来一场说唱对决，赢了就给你餐券...
+:bfhey:哦，好耶！成交！
+:gf3:那还不放歌，我们可没一整天。
+:cheese2:好-好的没问题。

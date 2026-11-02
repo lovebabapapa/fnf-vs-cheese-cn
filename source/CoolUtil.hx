@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.FlxG;
 import openfl.utils.Assets;
@@ -32,6 +32,19 @@ class CoolUtil
 		return difficultyStuff[PlayState.storyDifficulty][0].toUpperCase();
 	}
 
+	// 汉化：难度中文显示。只用于界面显示，逻辑判断仍走 difficultyString()
+	public static function difficultyStringCN():String
+	{
+		return switch (difficultyString())
+		{
+			case 'EASY': '简单';
+			case 'HARD': '困难';
+			case 'VIP': 'VIP';
+			case 'UNFAIR': '不公平';
+			default: difficultyString();
+		}
+	}
+
 	public static var spriteOffsets:Array<Dynamic> = [];
 	public static var timingWindows:Array<Dynamic> = [];
 
@@ -53,6 +66,7 @@ class CoolUtil
 		for (i in 0...daList.length)
 		{
 			daList[i] = daList[i].trim();
+			daList[i] = daList[i].split('\\n').join('\n');
 		}
 
 		return daList;

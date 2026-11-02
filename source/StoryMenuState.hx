@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.addons.plugin.taskManager.FlxTask;
 #if desktop
@@ -27,13 +27,13 @@ class StoryMenuState extends MusicBeatState
 {
 	//name display
 	var weekNames:Array<String> = [
-		"How To Rap",
-		"Restaurante De Fromage Bleu",
-		"Self Insert",
-		"Bonus Week",
+		"说唱教学",
+		"从芝蓝餐厅",
+		"作者乱入",
+		"附赠周",
 
-		"Unlock Weeks",
-		"Lock Weeks"
+		"解锁周",
+		"锁定周"
 	];
 
 	//main image back display
@@ -154,10 +154,10 @@ class StoryMenuState extends MusicBeatState
 		var blackBack:FlxSprite = new FlxSprite().loadGraphic(Paths.image('storymenu/black_stuff_scuffed'));
 		blackBack.antialiasing = ClientPrefs.globalAntialiasing;
 
-		scoreText = new FlxText(10, 60, 0, "SCORE: PLACEHOLDER SCORE TEXT", 36);
+		scoreText = new FlxText(10, 60, 0, "分数：0", 36);
 		scoreText.setFormat("VCR OSD Mono", 32);
 
-		resetText = new FlxText(scoreText.x, 680, 0, "Press RESET to Reset the weeks Score and Accuracy.", 36);
+		resetText = new FlxText(scoreText.x, 680, 0, "按 RESET 键重置本周分数与准确率。", 36);
 		resetText.setFormat("VCR OSD Mono", 20);
 		resetText.alpha = 0.5;
 
@@ -297,7 +297,7 @@ class StoryMenuState extends MusicBeatState
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
 		if(Math.abs(intendedScore - lerpScore) < 10) lerpScore = intendedScore;
 
-		scoreText.text = "HIGH SCORE:" + lerpScore;
+		scoreText.text = "最高分：" + lerpScore;
 
 		if (curWeek == 4 || curWeek == 5) {
 			sprDifficultyGroup.visible = false;

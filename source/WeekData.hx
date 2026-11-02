@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 class WeekData {
 	#if web
@@ -57,13 +57,13 @@ class WeekData {
 
 	//Edit: This now also messes with Discord Rich Presence, so it's kind of relevant.
 	public static var weekResetName:Array<String> = [
-		"Tutorial",
+		"教学",
 		null,	//Week 1
 		null,	//Week 2
-		"Bonus Week"
+		"附赠周"
 		#if PLAYTEST_BUILD
-		,"stop pressing the r button", //ur not supposed to be able to play this loloololl
-		"stop pressing the r button"   //ur not supposed to be able to play this loloololl
+		,"别再按 R 键了", //ur not supposed to be able to play this loloololl
+		"别再按 R 键了"   //ur not supposed to be able to play this loloololl
 		#end
 	];
 

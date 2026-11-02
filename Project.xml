@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
@@ -40,7 +40,7 @@
 
 	<!--UNIIMATIONS ENGINE CUSTOMIZATION -->
 	<define name="WINDOWS_BUILD" if="windows"/>
-	<define name="PLAYTEST_BUILD" if="debug"/>
+	<!-- <define name="PLAYTEST_BUILD" /> -->
 	<!--WHAT!
 		
 		don't question it ok
@@ -73,6 +73,10 @@
 	<assets path="assets/shared"        library="shared"        exclude="*.ogg" if="web"/>
 	<assets path="assets/shared"        library="shared"        exclude="*.mp3" unless="web"/>
 	<assets path="assets/.FUNNY"		library=".FUNNY"/>
+	<!-- lime 默认 exclude 含 ".*"，会吞掉所有点开头的文件/目录；直接点名单个文件才不会被过滤。
+	     .lua 是自由模式里那首隐藏曲，谱面缺了会报 file_contents 错误 -->
+	<assets path="assets/preload/lua/charts/.lua/.lua-easy.json" rename="assets/lua/charts/.lua/.lua-easy.json" unless="web"/>
+	<assets path="assets/preload/lua/charts/.lua/.lua-hard.json" rename="assets/lua/charts/.lua/.lua-hard.json" unless="web"/>
 
 	<!-- NOTE FOR FUTURE SELF SINCE FONTS ARE ALWAYS FUCKY 
 		TO FIX ONE OF THEM, I CONVERTED IT TO OTF. DUNNO IF YOU NEED TO

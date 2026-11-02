@@ -1,4 +1,4 @@
-import flixel.FlxG;
+﻿import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxTween;
@@ -28,16 +28,16 @@ class ChoiceState extends MusicBeatState
 		bg.scrollFactor.set();
 		add(bg);
 
-		var choice:Alphabet = new Alphabet(0, 120, "''What do you think Cheese?''", true, false, 0.05, 0.8);
+		var choice:Alphabet = new Alphabet(0, 120, "「Cheese，你觉得呢？」", true, false, 0.05, 0.8);
 		choice.screenCenter(X);
 		choice.alpha = 1;
 		add(choice);
 
-		nahText = new Alphabet(0, choice.y + 150, 'Nah', true);
+		nahText = new Alphabet(0, choice.y + 150, '不要', true);
 		nahText.screenCenter(X);
 		nahText.x -= 320;
 		add(nahText);
-		sureText = new Alphabet(0, choice.y + 150, "Sure!", true);
+		sureText = new Alphabet(0, choice.y + 150, "当然！", true);
 		sureText.screenCenter(X);
 		sureText.x += 300;
 		add(sureText);
@@ -84,6 +84,7 @@ class ChoiceState extends MusicBeatState
 				FlxTween.tween(FlxG.camera, { zoom: 1.5}, 1.5, { ease: FlxEase.expoIn });
 
 				var difficulty = CoolUtil.difficultyStuff[PlayState.storyDifficulty][1];
+				if (difficulty != '-hard' && difficulty != '-easy') difficulty = '-hard'; // 选择桥段的两首没有 VIP 谱面，防 null 崩溃
 
 				if(onYes)
 				{

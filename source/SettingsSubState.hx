@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 #if desktop
 import Discord.DiscordClient;
@@ -39,12 +39,12 @@ class SettingsSubState extends MusicBeatSubstate
 	static var unselectableOptions:Array<String> = ['oops'];
 
 	static var noCheckbox:Array<String> = [
-		'Input System:',
-		'Erase Save Data',
-		'Background Dim',
-		'Safe Frames',
-		'FPS Cap',
-		'Note Offset'
+		'输入系统：',
+		'清除存档',
+		'背景变暗',
+		'安全帧',
+		'帧率上限',
+		'音符偏移'
 	];
 
 	private static var curSelected:Int = 0;
@@ -72,53 +72,53 @@ class SettingsSubState extends MusicBeatSubstate
 		// FINISH TOMORROW
 		switch (category)
 		{
-			case 'GAMEPLAY':
+			case '玩法':
 				options = [
-					'Downscroll',
-					'Middlescroll',
-					'Ghost Tapping',
+					'下落式',
+					'中置轨道',
+					'幽灵按键',
 					#if PLAYTEST_BUILD
-					'Botplay',
+					'自动演奏',
 					#end
-					'RESET to Game Over',
-					'Miss Sounds',
-					'Note Offset',
-					'Safe Frames'
+					'RESET 直接死亡',
+					'漏击音效',
+					'音符偏移',
+					'安全帧'
 				];
-			case 'APPEARANCE':
+			case '外观':
 				options = [
-					'New Boyfriend Skin',
-					'Note Splashes',
-					'Hide Combo Rating',
-					'Hide HUD',
-					'Background Dim'
+					'BF 新皮肤',
+					'音符特效',
+					'隐藏连击评级',
+					'隐藏界面',
+					'背景变暗'
 				];
-			case 'PERFORMANCE':
+			case '性能':
 				options = [
-					'Flashing Lights',
-					'Special Effects',
-					'Camera Shake',
-					'Camera Zoom',
-					'High Quality'
+					'闪光特效',
+					'特殊效果',
+					'镜头抖动',
+					'镜头缩放',
+					'高画质'
 				];
-			case 'WINDOW':
+			case '窗口':
 				options = [
-					'Window Pause',
-					'Auto Pause',
+					'窗口暂停',
+					'自动暂停',
 					#if !mobile
-					'FPS Counter',
+					'FPS 显示',
 					#end
 
 					#if !html5
-					'FPS Cap' //Apparently 120FPS isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
+					'帧率上限' //Apparently 120FPS isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 					#end
 				];
-			case 'ACCESSIBILITY':
+			case '辅助':
 				options = [
-					'Pussy Mode',
-					'Optimized Mode',
-					'Input System:',
-					'Erase Save Data'
+					'怂逼模式',
+					'优化模式',
+					'输入系统：',
+					'清除存档'
 				];
 			default:
 				options = ['Error'];
@@ -256,7 +256,7 @@ class SettingsSubState extends MusicBeatSubstate
 			if(controls.ACCEPT && nextAccept <= 0)
 			{
 				switch(options[curSelected]) {
-					case 'FPS Counter':
+					case 'FPS 显示':
 						ClientPrefs.showFPS = !ClientPrefs.showFPS;
 						if (Main.fpsVar != null)
 							Main.fpsVar.visible = ClientPrefs.showFPS;
@@ -266,7 +266,7 @@ class SettingsSubState extends MusicBeatSubstate
 						if (Main.watermarkCheese != null)
 							Main.watermarkCheese.visible = ClientPrefs.showWatermark;
 
-					case 'High Quality':
+					case '高画质':
 						ClientPrefs.globalAntialiasing = !ClientPrefs.globalAntialiasing;
 						OptionsState.menuBG.antialiasing = ClientPrefs.globalAntialiasing;
 						arrows.antialiasing = ClientPrefs.globalAntialiasing;
@@ -286,10 +286,10 @@ class SettingsSubState extends MusicBeatSubstate
 							}
 						}
 
-					case 'Note Splashes':
+					case '音符特效':
 						ClientPrefs.noteSplashes = !ClientPrefs.noteSplashes;
 
-					case 'Flashing Lights':
+					case '闪光特效':
 						ClientPrefs.flashing = !ClientPrefs.flashing;
 
 					case 'Violence':
@@ -298,7 +298,7 @@ class SettingsSubState extends MusicBeatSubstate
 					case 'Swearing':
 						ClientPrefs.cursing = !ClientPrefs.cursing;
 
-					case 'Downscroll':
+					case '下落式':
 						ClientPrefs.downScroll = !ClientPrefs.downScroll;
 						if (ClientPrefs.downScroll) {
 							newArrows('downscroll_notes');
@@ -306,16 +306,16 @@ class SettingsSubState extends MusicBeatSubstate
 							newArrows('upscroll_notes');
 						}
 
-					case 'Middlescroll':
+					case '中置轨道':
 						ClientPrefs.middleScroll = !ClientPrefs.middleScroll;
 
-					case 'Ghost Tapping':
+					case '幽灵按键':
 						ClientPrefs.ghostTapping = !ClientPrefs.ghostTapping;
 
-					case 'Hide HUD':
+					case '隐藏界面':
 						ClientPrefs.hideHud = !ClientPrefs.hideHud;
 
-					case 'New Boyfriend Skin':
+					case 'BF 新皮肤':
 						if (!OptionsState.inPause)
 						{
 							ClientPrefs.bfreskin = !ClientPrefs.bfreskin;
@@ -329,10 +329,10 @@ class SettingsSubState extends MusicBeatSubstate
 							FlxG.sound.play(Paths.sound('cancelMenu'));
 						}
 
-					case 'Miss Sounds':
+					case '漏击音效':
 						ClientPrefs.missSounds = !ClientPrefs.missSounds;
 
-					case 'Optimized Mode':
+					case '优化模式':
 					    ClientPrefs.fuckyouavi = !ClientPrefs.fuckyouavi;
 						if (ClientPrefs.fuckyouavi)
 						{
@@ -353,31 +353,31 @@ class SettingsSubState extends MusicBeatSubstate
 							OptionsState.menuBlackShit.visible = true;
 						}
 
-					case 'RESET to Game Over':
+					case 'RESET 直接死亡':
 						ClientPrefs.resetDeath = !ClientPrefs.resetDeath;
 
-					case 'Hide Combo Rating':
+					case '隐藏连击评级':
 						ClientPrefs.comboShown = !ClientPrefs.comboShown;
 
-					case 'Special Effects':
+					case '特殊效果':
 						ClientPrefs.specialEffects = !ClientPrefs.specialEffects;
 
-					case 'Camera Shake':
+					case '镜头抖动':
 						ClientPrefs.cameraShake = !ClientPrefs.cameraShake;
 
-					case 'Camera Zoom':
+					case '镜头缩放':
 						ClientPrefs.camZoomOut = !ClientPrefs.camZoomOut;
 
-					case 'Window Pause':
+					case '窗口暂停':
 						ClientPrefs.windowPause = !ClientPrefs.windowPause;
 
-					case 'Auto Pause':
+					case '自动暂停':
 						ClientPrefs.gamePause = !ClientPrefs.gamePause;
 
-					case 'Botplay':
+					case '自动演奏':
 						ClientPrefs.botplay = !ClientPrefs.botplay;
 
-					case 'Pussy Mode':
+					case '怂逼模式':
 						ClientPrefs.pussyMode = !ClientPrefs.pussyMode;
 				}
 				reloadValues();
@@ -388,7 +388,7 @@ class SettingsSubState extends MusicBeatSubstate
 		}
 		else if (controls.ACCEPT)
 		{
-			if (options[curSelected] == 'Erase Save Data') {
+			if (options[curSelected] == '清除存档') {
 				openSubState(new ResetPromptSubState());
 				FlxG.sound.play(Paths.sound('clickMenu'));
 			}
@@ -414,7 +414,7 @@ class SettingsSubState extends MusicBeatSubstate
 				{
 					switch(options[curSelected])
 					{
-						case 'FPS Cap':
+						case '帧率上限':
 							{
 								ClientPrefs.framerate += add;
 								if(ClientPrefs.framerate < 60) ClientPrefs.framerate = 60;
@@ -433,7 +433,7 @@ class SettingsSubState extends MusicBeatSubstate
 									FlxG.updateFramerate = ClientPrefs.framerate;
 								}
 							}
-						case 'Note Offset':
+						case '音符偏移':
 							{
 								var mult:Int = 1;
 								if(holdTime > 1.5) { //Double speed after 1.5 seconds holding
@@ -443,7 +443,7 @@ class SettingsSubState extends MusicBeatSubstate
 								if(ClientPrefs.noteOffset < 0) ClientPrefs.noteOffset = 0;
 								else if(ClientPrefs.noteOffset > 500) ClientPrefs.noteOffset = 500;
 							}
-						case 'Background Dim':
+						case '背景变暗':
 							{
 								ClientPrefs.bgDim += add * 0.1;
 								OptionsState.menuBlackShit.alpha = ClientPrefs.bgDim;
@@ -458,13 +458,13 @@ class SettingsSubState extends MusicBeatSubstate
 								else if(ClientPrefs.bgDim > 0.9)
 									ClientPrefs.bgDim = 0.9;
 							}
-						case 'Safe Frames':
+						case '安全帧':
 							{
 								ClientPrefs.safeFrames += add;
 								if(ClientPrefs.safeFrames < 1) ClientPrefs.safeFrames = 1;
 								else if(ClientPrefs.safeFrames > 20) ClientPrefs.safeFrames = 20;
 							}
-						case 'Input System:':
+						case '输入系统：':
 							{
 								// I SHOULDVE DONE THIS IN AN ARRAY FUUUCK
 								switch (changeString)
@@ -502,7 +502,7 @@ class SettingsSubState extends MusicBeatSubstate
 				// BETTER THAN THE IF STATEMENT (slightly)
 				var soundShouldPlay:Bool = true;
 
-				if (options[curSelected] == 'Erase Save Data') soundShouldPlay = false;
+				if (options[curSelected] == '清除存档') soundShouldPlay = false;
 
 				if (holdTime <= 0 && soundShouldPlay) FlxG.sound.play(Paths.sound('clickMenu'));
 				holdTime += elapsed;
@@ -538,71 +538,71 @@ class SettingsSubState extends MusicBeatSubstate
 		//DESCRIPTIONS
 
 		switch(options[curSelected]) {
-			case 'FPS Cap':
-				daText = "Frames per second of the game.\nAdjust with LEFT and RIGHT keys.";
-			case 'Note Offset':
-				daText = "Adjust your offset.\nUseful for preventing audio lag from wireless earphones.";
-			case 'FPS Counter':
-				daText = "If unchecked, hides FPS Counter.";
+			case '帧率上限':
+				daText = "游戏的每秒帧数。\n用 LEFT 和 RIGHT 键调整。";
+			case '音符偏移':
+				daText = "调整你的偏移量。\n可以避免无线耳机导致的音频延迟。";
+			case 'FPS 显示':
+				daText = "不勾选的话，隐藏 FPS 显示。";
 			case 'Watermark Icon':
-				daText = "If unchecked, hides the VS Cheese watermark.";
-			case 'High Quality':
-				daText = "If unchecked, disables anti-aliasing, increases performance\nat the cost of the graphics not looking as smooth.";
-			case 'Downscroll':
-				daText = "If checked, notes go downward instead of upward\nuse this if you're a REAL rhythm gamer. B)"; // i added it back idk why it was removed B)
-			case 'Middlescroll':
-				daText = "If checked, your notes get centered\nsimilar to most 4k games.";
-			case 'Ghost Tapping':
-				daText = "If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.";
+				daText = "不勾选的话，隐藏 VS Cheese 水印。";
+			case '高画质':
+				daText = "不勾选的话，关闭抗锯齿、提升性能，\n代价是画面不那么平滑。";
+			case '下落式':
+				daText = "勾选后音符从上往下落而不是从下往上\n适合真正的音游玩家。 B)"; // i added it back idk why it was removed B)
+			case '中置轨道':
+				daText = "勾选后音符轨道会居中，\n和大多数 4K 音游一样。";
+			case '幽灵按键':
+				daText = "勾选后，在没有音符可打的时候乱按\n不会算漏击。";
 			case 'Swearing':
-				daText = "If unchecked, your mom won't be angry at you.";
+				daText = "不勾选的话，你妈就不会生你的气了。";
 			case 'Violence':
-				daText = "If unchecked, you won't get disgusted as frequently.";
-			case 'Note Splashes':
-				daText = "If unchecked, hitting \"Perfect!\" won't\nshow particles.";
-			case 'Flashing Lights':
-				daText = "Uncheck this if you're sensitive to flashing lights.";
-			case 'Hide HUD':
-				daText = "If checked, hides your HUD.";
-			case 'New Boyfriend Skin':
-				daText = "If unchecked, bf will have the normal skin\ninstead of the default \"remastered\" one.";
-			case 'Miss Sounds':
-				daText = "If unchecked, miss sounds won't play and vocals\nwon't be muted when you miss a note.";
-			case 'Background Dim':
-			    daText = "Dims the background down with a black tint.\nAdjust opacity with LEFT and RIGHT keys.";
-			case 'Optimized Mode':
-				daText = "If checked, hides ALL backgrounds and characters.\nAlso disables distractions.";
-			case 'Erase Save Data':
-				daText = "WARNING: THIS WILL CLOSE THE GAME!\nPress your ACCEPT key to clear your VS Cheese save data.";
-			case 'RESET to Game Over':
-				daText = "Toggle pressing your RESET key to game over.";
-			case 'Hide Combo Rating':
-				daText = "If checked, the rating pop up showing your combo\nwill be hidden.";
-			case 'Special Effects':
-				daText = "If unchecked, mechanic indicators and visual effects\nwill be turned off.";
-			case 'Camera Shake':
-				daText = "If unchecked, camera will not shake or move to the notes\npressed in songs with camera effects.";
-			case 'Camera Zoom':
-				daText = "If unchecked, camera will not zoom in and out in\nsongs with camera effects.";
-			case 'Input System:':
-				daText = "Choose input systems from other Friday Night Funkin' Engines.\nAdjust with LEFT and RIGHT keys.";
-			case 'Window Pause':
-				daText = "If checked, freezes the game when clicking off of the window.";
-			case 'Auto Pause':
-				daText = "If unchecked, doesn't pause the game when\nclicking off the window during a song.";
-			case 'Botplay':
-				daText = "BE A NERDDDD LOLL, this is only in playtest buuilds of the game hi diples hi diples hi di";
-			case 'Safe Frames':
-				daText = "Customize how many frames you have for\nhitting a note earlier or late.";
-			case 'Pussy Mode':
-				daText = "Turns off mechanics in UNFAIR songs.";
+				daText = "不勾选的话，你就不会那么频繁地感到恶心。";
+			case '音符特效':
+				daText = "不勾选的话，打出“完美！”就不会\n显示粒子特效。";
+			case '闪光特效':
+				daText = "如果你对闪光敏感，请取消勾选。";
+			case '隐藏界面':
+				daText = "勾选后隐藏游戏界面。";
+			case 'BF 新皮肤':
+				daText = "不勾选的话，BF 会用普通皮肤\n而不是默认的“重制版”皮肤。";
+			case '漏击音效':
+				daText = "不勾选的话，漏击时不会播放音效，\n人声也不会静音。";
+			case '背景变暗':
+			    daText = "用黑色遮罩调暗背景。\n用 LEFT 和 RIGHT 键调整不透明度。";
+			case '优化模式':
+				daText = "勾选后隐藏所有背景和角色，\n同时关闭干扰演出。";
+			case '清除存档':
+				daText = "警告：这会直接关闭游戏！\n按确认键清除 VS Cheese 的存档数据。";
+			case 'RESET 直接死亡':
+				daText = "开启后：按 RESET 键直接进入死亡画面。";
+			case '隐藏连击评级':
+				daText = "勾选后隐藏显示连击的评级弹窗。";
+			case '特殊效果':
+				daText = "不勾选的话，机制提示和视觉特效\n都会被关闭。";
+			case '镜头抖动':
+				daText = "不勾选的话，有镜头演出的歌里\n镜头不会抖动或移向按下的音符。";
+			case '镜头缩放':
+				daText = "不勾选的话，有镜头演出的歌里\n镜头不会缩放。";
+			case '输入系统：':
+				daText = "选择其他周五夜放克引擎的输入系统。\n用 LEFT 和 RIGHT 键调整。";
+			case '窗口暂停':
+				daText = "勾选后，点击窗口外会冻结游戏。";
+			case '自动暂停':
+				daText = "不勾选的话，歌曲进行中点击窗口外\n不会暂停游戏。";
+			case '自动演奏':
+				daText = "当个书呆子哈哈哈，这选项只在游戏的测试版里出现\nhi diples hi diples hi di";
+			case '安全帧':
+				daText = "自定义打早了或打晚了\n还有多少帧的判定宽限。";
+			case '怂逼模式':
+				daText = "关闭 不公平难度歌曲里的机制。";
 		}
 		descText.text = daText;
 
 		// switch in case i wanna add more options that are untogglable when using the pause menu options (it is the same state/substates)
 		switch (options[curSelected])
 		{
-			case 'New Boyfriend Skin':
+			case 'BF 新皮肤':
 				if (OptionsState.inPause)
 					pauseText.alpha = 1;
 				else
@@ -610,7 +610,7 @@ class SettingsSubState extends MusicBeatSubstate
 			default:
 				pauseText.alpha = 0;
 		}
-		pauseText.text = "This option cannot be toggled in the pause menu.\nPlease visit options on the main menu to toggle.";
+		pauseText.text = "这个选项不能在暂停菜单里改动。\n请到主菜单的选项里调整。";
 
 		var bullShit:Int = 0;
 
@@ -651,51 +651,51 @@ class SettingsSubState extends MusicBeatSubstate
 			if(checkbox != null) {
 				var daValue:Bool = false;
 				switch(options[checkboxNumber[i]]) {
-					case 'FPS Counter':
+					case 'FPS 显示':
 						daValue = ClientPrefs.showFPS;
 					case 'Watermark Icon':
 						daValue = ClientPrefs.showWatermark;
-					case 'High Quality':
+					case '高画质':
 						daValue = ClientPrefs.globalAntialiasing;
-					case 'Note Splashes':
+					case '音符特效':
 						daValue = ClientPrefs.noteSplashes;
-					case 'Flashing Lights':
+					case '闪光特效':
 						daValue = ClientPrefs.flashing;
-					case 'Downscroll':
+					case '下落式':
 						daValue = ClientPrefs.downScroll;
-					case 'Middlescroll':
+					case '中置轨道':
 						daValue = ClientPrefs.middleScroll;
-					case 'Ghost Tapping':
+					case '幽灵按键':
 						daValue = ClientPrefs.ghostTapping;
 					case 'Swearing':
 						daValue = ClientPrefs.cursing;
 					case 'Violence':
 						daValue = ClientPrefs.violence;
-					case 'Hide HUD':
+					case '隐藏界面':
 						daValue = ClientPrefs.hideHud;
-					case 'New Boyfriend Skin':
+					case 'BF 新皮肤':
 						daValue = ClientPrefs.bfreskin;
-					case 'Miss Sounds':
+					case '漏击音效':
 						daValue = ClientPrefs.missSounds;
-					case 'Optimized Mode':
+					case '优化模式':
 						daValue = ClientPrefs.fuckyouavi;
-					case 'RESET to Game Over':
+					case 'RESET 直接死亡':
 						daValue = ClientPrefs.resetDeath;
-					case 'Hide Combo Rating':
+					case '隐藏连击评级':
 						daValue = ClientPrefs.comboShown;
-					case 'Special Effects':
+					case '特殊效果':
 						daValue = ClientPrefs.specialEffects;
-					case 'Camera Shake':
+					case '镜头抖动':
 						daValue = ClientPrefs.cameraShake;
-					case 'Camera Zoom':
+					case '镜头缩放':
 						daValue = ClientPrefs.camZoomOut;
-					case 'Window Pause':
+					case '窗口暂停':
 						daValue = ClientPrefs.windowPause;
-					case 'Auto Pause':
+					case '自动暂停':
 						daValue = ClientPrefs.gamePause;
-					case 'Botplay':
+					case '自动演奏':
 						daValue = ClientPrefs.botplay;
-					case 'Pussy Mode':
+					case '怂逼模式':
 						daValue = ClientPrefs.pussyMode;
 				}
 				checkbox.daValue = daValue;
@@ -706,15 +706,15 @@ class SettingsSubState extends MusicBeatSubstate
 			if(text != null) {
 				var daText:String = '';
 				switch(options[textNumber[i]]) {
-					case 'FPS Cap':
+					case '帧率上限':
 						daText = '' + ClientPrefs.framerate;
-					case 'Note Offset':
+					case '音符偏移':
 						daText = ClientPrefs.noteOffset + 'ms';
-					case 'Background Dim':
+					case '背景变暗':
 						daText = Math.round(ClientPrefs.bgDim * 100) + '%';
-					case 'Safe Frames':
+					case '安全帧':
 						daText = '' + ClientPrefs.safeFrames;
-					case 'Input System:':
+					case '输入系统：':
 						daText = ClientPrefs.inputSystem;
 				}
 				var lastTracker:FlxSprite = text.sprTracker;

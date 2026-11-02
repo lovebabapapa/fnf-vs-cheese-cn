@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import flixel.FlxState;
 import flixel.FlxG;
@@ -31,7 +31,7 @@ class VideoState extends MusicBeatState
 	public var videoFrames:Int = 0;
 	public var defaultText:String = "";
 	public var doShit:Bool = false;
-	public var pauseText:String = "Paused, Press ENTER to resume";
+	public var pauseText:String = "已暂停，按 ENTER 继续";
 	public var autoPause:Bool = false;
 	public var musicPaused:Bool = false;
 

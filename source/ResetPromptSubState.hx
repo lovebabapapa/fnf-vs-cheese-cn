@@ -1,4 +1,4 @@
-import flixel.FlxG;
+﻿import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.util.FlxColor;
@@ -28,21 +28,21 @@ class ResetPromptSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-		var text:Alphabet = new Alphabet(0, 165, "Are you sure you want to erase all your save data?", true, false, 0.05, 0.55);
+		var text:Alphabet = new Alphabet(0, 165, "确定要清除全部存档数据吗？", true, false, 0.05, 0.55);
 		text.screenCenter(X);
 		text.alpha = 1;
 		add(text);
 
-		var text2:Alphabet = new Alphabet(0, text.y + 90, "You will lose all your progress and this will close the game", true, false, 0.05, 0.45);
+		var text2:Alphabet = new Alphabet(0, text.y + 90, "你会失去所有进度，且游戏将会关闭", true, false, 0.05, 0.45);
 		text2.screenCenter(X);
 		text2.alpha = 1;
 		add(text2);
 
-		yesText = new Alphabet(0, text2.y + 150, 'Yes', true);
+		yesText = new Alphabet(0, text2.y + 150, '确定', true);
 		yesText.screenCenter(X);
 		yesText.x -= 200;
 		add(yesText);
-		noText = new Alphabet(0, text2.y + 150, 'No', true);
+		noText = new Alphabet(0, text2.y + 150, '取消', true);
 		noText.screenCenter(X);
 		noText.x += 200;
 		add(noText);

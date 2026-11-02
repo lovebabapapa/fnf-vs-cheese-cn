@@ -1,4 +1,4 @@
-package;
+﻿package;
 
 import Song.SwagSong;
 #if desktop
@@ -344,7 +344,7 @@ class FreeplaySelection extends MusicBeatState
 		textBG.alpha = 0.6;
 		add(textBG);
 
-		var leText:String = "Press RESET to Reset your Score and Accuracy.";
+		var leText:String = "按 RESET 键重置分数与准确率。";
 		var text:FlxText = new FlxText(textBG.x, textBG.y + 4, FlxG.width, leText, 18);
 		text.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, LEFT);
 		text.scrollFactor.set();
@@ -387,8 +387,8 @@ class FreeplaySelection extends MusicBeatState
 		//SET CAMZOOM
 		FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125), 0, 1));
 
-		scoreText.text = 'HIGH SCORE: ' + intendedScore;
-		accText.text = 'ACCURACY: ' + accuracyDisplay + '%';
+		scoreText.text = '最高分：' + intendedScore;
+		accText.text = '准确率：' + accuracyDisplay + '%';
 		reposScoreText();
 
 		newColor = songs[curSelected].color;
@@ -695,7 +695,7 @@ class FreeplaySelection extends MusicBeatState
 		#end
 
 		PlayState.storyDifficulty = curDifficulty;
-		diffText.text = 'Difficulty: < ' + CoolUtil.difficultyString() + ' >';
+		diffText.text = '难度：< ' + CoolUtil.difficultyStringCN() + ' >';
 		reposScoreText();
 
 		if (category == 'BONUS SONGS' && !FlxG.save.data.seenCream)

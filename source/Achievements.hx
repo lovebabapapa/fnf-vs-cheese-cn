@@ -1,4 +1,4 @@
-import flixel.FlxG;
+﻿import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxCamera;
 import flixel.tweens.FlxEase;
@@ -15,56 +15,56 @@ class Achievements
 	public static var achievementsStuff:Array<Dynamic> = [
 		//Name, 						 Description, 			 																	 Achievement save tag, 	 Hide?
 
-		["Freaky on a Friday Night",	"Play on a Friday Night.",																	'friday_night_play',	 true],
-		["Back To The Basics",			"Beat the Tutorial.",																		'tutorial_beat', 		false],
+		["周五夜放克狂热",	"在周五晚上玩本游戏。",																	'friday_night_play',	 true],
+		["回到基础",			"完成教学关。",																		'tutorial_beat', 		false],
 
 		// WEEKS
-		["Are You Cultured?", 			"Beat Week 1 on HARD.",																		'week1_beat', 			false],
-		["A Prequel?",					"Beat Week 2 on HARD.",																		'week2_beat',			false],
-		["The Boyz",					"Sing with Unii and get the canon ending \nto Week 2",										'dynamic_duo',			false],
-		["Something's Missing...",		"Say no to Unii and get the alternate\nending to Week 2.",									'below_zero',			false],
+		["你有文化吗？", 			"以困难难度通关第一周。",																		'week1_beat', 			false],
+		["前传？",					"以困难难度通关第二周。",																		'week2_beat',			false],
+		["兄弟们",					"和 Unii 合唱并达成第二周的\n正史结局",										'dynamic_duo',			false],
+		["总感觉少了什么...",		"拒绝 Unii 并达成第二周的\n另一结局。",									'below_zero',			false],
 
 		// VIP DIFFICULTY
-		["Freestyle Time!", 			"Beat Restaurante on VIP difficulty.",														'restaurante_ex',		false],
-		["Let's Change It Up!", 		"Beat Milkshake on VIP difficulty.",														'milkshake_ex',		 	false],
-		["You're Not Cultured Yet!",	"Beat Cultured on VIP difficulty.", 														'cultured_ex',			false],
+		["即兴时刻！", 			"以 VIP 难度通关 Restaurante。",														'restaurante_ex',		false],
+		["换个花样！", 		"以 VIP 难度通关 Milkshake。",														'milkshake_ex',		 	false],
+		["你还不够有文化！",	"以 VIP 难度通关 Cultured。", 														'cultured_ex',			false],
 
 		// EXTRA ACHIEVEMENTS
-		["Afterparty",					"Play all Bonus Songs and VIP remixes.",													'beat_bonus',			false],
-		["Megalomaniac", 				"Beat Manager Strike Back with mechanics on.",												'beat_chara',			 true],
-		["Let It Go",	 				"Beat Frosted with mechanics on.",															'beat_sans',			 true],
-		["Mania",	 					"Beat Alter Ego with mechanics on.",														'beat_unii',			 true],
-		["I'm Lagging!",				"Beat Relinquish with mechanics on.",														'beat_arsen',			 true],
+		["余兴派对",					"玩过全部附赠曲和 VIP 混音版。",													'beat_bonus',			false],
+		["狂妄自大", 				"开启机制通关 Manager Strike Back。",												'beat_chara',			 true],
+		["随它吧",	 				"开启机制通关 Frosted。",															'beat_sans',			 true],
+		["癫狂",	 					"开启机制通关 Alter Ego。",														'beat_unii',			 true],
+		["我卡了！",				"开启机制通关 Relinquish。",														'beat_arsen',			 true],
 
 		["Fucking Cheater...",  		UniiStringTools.potionionsMessage(), 														'beat_onion', 			 true], //made cleaner, look in UniiStringTools.hx for info!
 
-		["Cerbera",						"Place a note in the Chart Editor.",														'charter', 				false],
-		["awww the scrunkly <3",		"Headpat Cheese on the Main Menu.",															'scrunkly',				false], //i added a heart here fuck u lol it looks cute <33
-		["Loremaster",					"You're a fucking streamer aren't you?!\nDon't skip dialogue AT ALL in any way.",			'evil_woops',			false],
+		["Cerbera",						"在谱面编辑器里放置一个音符。",														'charter', 				false],
+		["好可爱的小家伙 <3",		"在主菜单摸摸 Cheese 的头。",															'scrunkly',				false], //i added a heart here fuck u lol it looks cute <33
+		["考据大师",					"你他妈是主播吧？！\n任何形式的跳过对话都不行。",			'evil_woops',			false],
 
 		// OG RENAMED
 
-		["L + Ratio",					"Beat a Song with less than 20% accuracy.",													'ur_bad',				false],
-		["Marvelous",					"Beat a Song with a Full Combo with a 100% PFC.",											'ur_good',				false],
-		["Long And Hard", 				"Hold down a note for at least 5 seconds. \nThe name? don't know what you mean...", 		'oversinging', 			false],
-		["SCP-173",						"Don't blink.\n(Finish a Song without going Idle.)",										'hype',					false],
-		["Dynamic Duo",					"Finish a Song pressing only two keys.",													'two_keys',				false],
-		["Mac User",					"Have you tried to run the game on a toaster?",												'toastie',				false],
+		["L + Ratio",					"以低于 20% 的准确率完成一首歌。",													'ur_bad',				false],
+		["完美无缺",					"以 100% PFC 全连完成一首歌。",											'ur_good',				false],
+		["又长又硬", 				"按住一个音符至少 5 秒。\n名字？不知道你在说什么...", 		'oversinging', 			false],
+		["SCP-173",						"不要眨眼。\n（不进入待机动画完成一首歌。）",										'hype',					false],
+		["二人组合",					"只用两个按键完成一首歌。",													'two_keys',				false],
+		["Mac 用户",					"你试过用烤面包机跑这游戏吗？",												'toastie',				false],
 
 		// SECRET
-		["Ghostly Articulation", 		"HEY GUYSITS ME GHOST ORU! THE REAL ONE! IM REAL!",											'beat_ghost',			 true],
-		["Hacker",						"01100011 01100001 01101101 01100101 01101111", 											'beat_diples', 			 true],
-		["Lung Failure", 				"This meme isn't fucking funny anymore.",													'beat_ralsei',			 true]
+		["幽灵发声", 		"嘿兄弟们是我幽灵 ORU！真的！我是真的！",											'beat_ghost',			 true],
+		["黑客",						"01100011 01100001 01101101 01100101 01101111", 											'beat_diples', 			 true],
+		["肺衰竭", 				"这梗真他妈不好笑了。",													'beat_ralsei',			 true]
 	];
 
 	// for unlocks/notifications
 	public static var notifStuff:Array<Dynamic> = [
 		//Header, 						 Subtitle,	 			 							 Save tag, 	 			Hide?
-		["Psst...", 					"You unlocked Week 1 in Story Mode!",				'unlock_week1',			true],
-		["Psst...", 					"You unlocked VIP difficulty in Freeplay!",			'unlock_ex',			true],
-		["Psst...", 					"You unlocked Week 2 in Story Mode!",				'unlock_week2',			true],
-		["Psst...", 					"You unlocked BONUS CONTENT in Story Mode!",		'unlock_bonus',			true],
-		["Psst...", 					"You unlocked BONUS SONGS in Freeplay!",			'unlock_endgame',		true],
+		["嘿...", 					"你在故事模式里解锁了第一周！",				'unlock_week1',			true],
+		["嘿...", 					"你在自由模式里解锁了 VIP 难度！",			'unlock_ex',			true],
+		["嘿...", 					"你在故事模式里解锁了第二周！",				'unlock_week2',			true],
+		["嘿...", 					"你在故事模式里解锁了附赠内容！",		'unlock_bonus',			true],
+		["嘿...", 					"你在自由模式里解锁了附赠歌曲！",		'unlock_endgame',		true],
 	];
 
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
