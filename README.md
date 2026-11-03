@@ -65,6 +65,20 @@ lime build windows
 需要 MSVC（VS2019+ Build Tools，含 Windows SDK）。
 编译细节与踩坑记录见本仓库 commit 历史。
 
+### ⚠️ 编译常见坑（先看这里）
+
+- **UTF-8 BOM**：本仓库部分含中文的 `.hx` 文件**必须带 UTF-8 BOM**（文件开头 3 字节 `EF BB BF`），
+  否则 Haxe 编译器按错误编码解析中文直接报错。如果克隆后编译报"invalid characters"之类的错，
+  给对应文件补上 BOM 即可（任何能"另存为 UTF-8 with BOM"的编辑器都行，VS Code 右下角点编码可切换）。
+- **换行符**：仓库内 LF / CRLF 混用，Windows 下 git 建议设置 `core.autocrlf=false` 再编译，
+  避免无意义的全文件 diff。
+- **extension-webm**：必须用上面的 GrowtopiaFli fork（官方 0.0.5 缺 `fuck`/`changePlaying` API，
+  本项目源码依赖它们）；克隆后需要自行编译 ndll：
+  `haxelib run hxcpp <haxelib路径>/extension-webm/0,0,6/project/Build.xml -Dwindows -DHXCPP_M64`
+- **discord_rpc**：haxelib 官方包不含原生 lib，需要从
+  [Aidan63/linc_discord-rpc](https://github.com/Aidan63/linc_discord-rpc)（含子模块）把 `lib/`
+  复制进 haxelib 的 discord_rpc 目录。
+
 ---
 
 ## 原版说明（Psych Engine）
