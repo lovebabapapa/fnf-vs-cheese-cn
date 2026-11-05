@@ -103,7 +103,7 @@ Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), 
 * **OiSuzuki**、**Dansilot** — 配音
 * 详见游戏内 Credits 页面
 
-**Original mod**: https://gamebanana.com/mods/301107
+**Original mod**: https://gamebanana.com/mods/623510
 **License**: Apache 2.0（见 LICENSE 文件）
 
 ---
